@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Live date:</strong>
+  <%= @showslist.live_date %>
+</p>
+
+<p>
+  <strong>Live place:</strong>
+  <%= @showslist.live_place %>
+</p>
+
+<p>
+  <strong>Live pref:</strong>
+  <%= @showslist.live_pref %>
+</p>
+
+<p>
+  <strong>Last modified:</strong>
+  <%= @showslist.last_modified %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @showslist.filename %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @showslist.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @showslist.title %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @showslist.length %>
+</p>
+
+<p>
+  <strong>Playtime:</strong>
+  <%= @showslist.playtime %>
+</p>
+
+<%= link_to 'Edit', edit_showslist_path(@showslist) %> |
+<%= link_to 'Back', showslists_path %>

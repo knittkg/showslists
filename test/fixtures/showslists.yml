@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  live_date: MyString
+  live_place: MyString
+  live_pref: MyString
+  last_modified: 2018-02-17 09:44:29
+  filename: MyString
+  name: MyString
+  title: MyString
+  length: 1
+  playtime: 1
+
+two:
+  live_date: MyString
+  live_place: MyString
+  live_pref: MyString
+  last_modified: 2018-02-17 09:44:29
+  filename: MyString
+  name: MyString
+  title: MyString
+  length: 1
+  playtime: 1
