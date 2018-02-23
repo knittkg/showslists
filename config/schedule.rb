@@ -7,6 +7,8 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 set :output, "../log/cron.log"
+#set :environment, :production
+set :environment, :development
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -18,8 +20,8 @@ set :output, "../log/cron.log"
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 1.minutes do
-runner "ruby ../app/models/getmetadata.rb"
+every 1.minute do
+  command "ruby ../app/models/getmetadata.rb"
 end
 
 #every :day, at: "10:35 am" do"
