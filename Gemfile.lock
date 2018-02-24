@@ -83,6 +83,11 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     debug_inspector (0.0.3)
+    delayed_job (4.1.4)
+      activesupport (>= 3.0, < 5.2)
+    delayed_job_active_record (4.1.2)
+      activerecord (>= 3.0, < 5.2)
+      delayed_job (>= 3.0, < 5)
     erubi (1.7.0)
     execjs (2.7.0)
     faker (1.8.7)
@@ -246,6 +251,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   carrierwave-audio
   coffee-rails (~> 4.2)
+  delayed_job_active_record
   faker
   jbuilder (~> 2.5)
   letter_opener_web

@@ -1,7 +1,9 @@
+=begin
 require 'open-uri'
+require 'securerandom'
 
 class Getmetadata < ActiveRecord::Base
-  def self.getmd()
+  def self.getmd
     # Artstテーブルの情報を読み出す 
     @artists = Artist.all
     # 最終更新情報を読み出す
@@ -20,7 +22,7 @@ class Getmetadata < ActiveRecord::Base
     else 
       # puts "Start DL"
       # 保存時のファイル名を設定 UNIX時間でユニーク性を担保
-      filename = "#{Time.now.to_i}.mp3"
+      filename = "#{Time.now.to_i}_#{SecureRandom.base64(8)}.mp3"
       # filenameの通り保存する。本当は保存時のディレクトリを指定すべきだがこれから調査
       open(url) do |file|
         open(filename, "w+b") do |out|
@@ -36,4 +38,4 @@ class Getmetadata < ActiveRecord::Base
     end
   end
 end
-
+=end

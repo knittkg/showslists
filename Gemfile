@@ -77,3 +77,5 @@ gem 'ruby-audioinfo'
 gem 'carrierwave-audio'
 # Cyclic execution 
 gem 'whenever', require: false
+# delayed_job for active record 
+gem 'delayed_job_active_record'
