@@ -82,6 +82,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    daemons (1.2.6)
     debug_inspector (0.0.3)
     delayed_job (4.1.4)
       activesupport (>= 3.0, < 5.2)
@@ -251,6 +252,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   carrierwave-audio
   coffee-rails (~> 4.2)
+  daemons
   delayed_job_active_record
   faker
   jbuilder (~> 2.5)

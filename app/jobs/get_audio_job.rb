@@ -44,9 +44,15 @@ class GetAudioJob < ApplicationJob
           AudioInfo.open(filename) do |info|
             stat = File.stat(filename)
             Showslist.create( filename: fixture_file_upload(filename, 'audio/mpeg') , name: info.artist , title: info.title , length: stat.size , playtime: info.length)
-            # puts 'recentshow.mp3 new entry created'
+            puts 'recentshow.mp3 new entry created'
           end
         # 管理者宛に更新通知のメール送信
+         #respond_to do |format|
+            @showslist = Showslist.last
+            #binding.pry
+            ShowslistMailer.showslist_mail(@showslist).deliver
+         # end
+
       end
     end
   end

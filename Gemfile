@@ -79,3 +79,5 @@ gem 'carrierwave-audio'
 gem 'whenever', require: false
 # delayed_job for active record 
 gem 'delayed_job_active_record'
+gem "daemons"
+
