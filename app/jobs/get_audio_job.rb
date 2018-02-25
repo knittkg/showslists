@@ -8,6 +8,7 @@ rescue LoadError
 end
 
 class GetAudioJob < ApplicationJob
+  include ActionDispatch::TestProcess
   before_enqueue :set_artist, only: [:edit , :update]
   queue_as :default
 
@@ -20,35 +21,30 @@ class GetAudioJob < ApplicationJob
       # puts file.last_modified
       last = artist.last_modified
       # puts last
-      # Memo: lastとfile.last_modifiedの型を明示的に合わせる必要があるかも
+      # Memo: lastとfile.last_modifiedの型を明示的に合わせる必要あり（以下の比較文が機能しなかった）
 
       if last.to_s == file.last_modified.to_s
-        puts "no need to DL"
+        # puts "no need to DL"
       else 
-        puts "Start DL"
+        # puts "Start DL"
         filename = "#{Time.now.to_i}_#{SecureRandom.base64(8)}.mp3"
-        # filenameの通り保存する。本当は保存時のディレクトリを指定すべきだがこれから調査
+        # filenameの通り保存する。
         open(url) do |file|
           open(filename, "w+b") do |out|
             out.write(file.read)
           end
         end
-        # Artist.last_modified の値を更新
+        # puts 'new file stored'
+        # Artist.last_modified の値を更新（次回チェック時の比較用）
         artist.last_modified=file.last_modified
         artist.save
+        # puts 'last_modified record updated'
 
         # 保存したid3情報を読み出してファイル名とともにshowslistテーブルに新規登録する処理
           AudioInfo.open(filename) do |info|
             stat = File.stat(filename)
-            puts([filename])
-            puts([info.artist])
-            name = info.artist
-            puts([info.title])
-            title = info.title
-            puts stat.size
-            puts([info.length])
-            playtime = info.length
-            Showslist.create( name: name , title: title , length: stat.size , playtime: playtime)
+            Showslist.create( filename: fixture_file_upload(filename, 'audio/mpeg') , name: info.artist , title: info.title , length: stat.size , playtime: info.length)
+            # puts 'recentshow.mp3 new entry created'
           end
         # 管理者宛に更新通知のメール送信
       end
