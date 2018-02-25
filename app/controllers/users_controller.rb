@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_current_user, only: [:new, :edit, :show , :destroy]
   def new
     @user = User.new
   end
@@ -20,5 +21,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+
+  def set_current_user
+    unless logged_in?
+    flash[:warning] = 'ログインして下さい'
+    redirect_to new_session_path
+    end
   end
 end

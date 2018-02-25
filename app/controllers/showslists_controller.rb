@@ -1,5 +1,6 @@
 class ShowslistsController < ApplicationController
   before_action :set_showslist, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user, only: [:new, :edit, :show , :destroy]
 
   # GET /showslists
   # GET /showslists.json
@@ -78,5 +79,12 @@ class ShowslistsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def showslist_params
       params.require(:showslist).permit(:live_date, :live_place, :live_pref, :last_modified, :filename, :name, :title, :length, :playtime)
+    end
+    
+    def set_current_user
+      unless logged_in?
+      flash[:warning] = 'ログインして下さい'
+      redirect_to new_session_path
+      end
     end
 end

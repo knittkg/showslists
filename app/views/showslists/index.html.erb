@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Live date</th>
-      <th>Live place</th>
-      <th>Live pref</th>
+      <!-- <th>Live date</th>  -->
+      <!-- <th>Live place</th> -->
+      <!-- <th>Live pref</th>  -->
       <th>File</th>
       <th>Artist</th>
       <th>Title</th>
@@ -20,22 +20,28 @@
   <tbody>
     <% @showslists.each do |showslist| %>
       <tr>
-        <td><%= showslist.live_date %></td>
-        <td><%= showslist.live_place %></td>
-        <td><%= showslist.live_pref %></td>
+        <!-- <td><%= showslist.live_date %></td>  -->
+        <!-- <td><%= showslist.live_place %></td> -->
+        <!-- <td><%= showslist.live_pref %></td>  -->
         <td><%= link_to showslist.filename , action: "download", id: showslist.id %></td>
         <td><%= showslist.name %></td>
         <td><%= showslist.title %></td>
         <td><%= showslist.length %></td>
         <td><%= showslist.playtime %></td>
-        <td><%= link_to 'Show', showslist %></td>
+        <!-- <td><%= link_to 'Show', showslist %></td> -->
+        <% if logged_in? %>
         <td><%= link_to 'Edit', edit_showslist_path(showslist) %></td>
         <td><%= link_to 'Destroy', showslist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <% else %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Showslist', new_showslist_path %>
+<% if logged_in? %>
+  <%= link_to 'New Showslist', new_showslist_path %>
+<% else %>
+<% end %>

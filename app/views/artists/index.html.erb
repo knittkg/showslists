@@ -1,3 +1,5 @@
+<% if logged_in? %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Artists</h1>
@@ -29,3 +31,6 @@
 <br>
 
 <%= link_to 'New Artist', new_artist_path %>
+
+<% else %>
+<% end %>

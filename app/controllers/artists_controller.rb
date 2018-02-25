@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user, only: [:new, :edit, :show]
 
   # GET /artists
   # GET /artists.json
@@ -70,5 +71,12 @@ class ArtistsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
       params.require(:artist).permit(:name, :url, :last_modified)
+    end
+
+    def set_current_user
+      unless logged_in?
+      flash[:warning] = 'ログインして下さい'
+      redirect_to new_session_path
+      end
     end
 end

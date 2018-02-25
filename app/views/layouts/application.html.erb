@@ -12,12 +12,16 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
+    <%= link_to "Showslists", showslists_path %>
 
     <% if logged_in? %>
+      <%= link_to "Artists", artists_path %>
+      <%= link_to 'New Showslist', new_showslist_path %>
+      <%= link_to 'New Artist', new_artist_path %>
       <%= link_to "Profile", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
     <% else %>
-      <%= link_to "Sign up", new_user_path %>
+      <!-- <%= link_to "Sign up", new_user_path %> NOBODY CAN SIGN UP WITHOUT ADMINISTRATORS -->
       <%= link_to "Login", new_session_path %>
     <% end %>
 
