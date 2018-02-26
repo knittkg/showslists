@@ -20,8 +20,8 @@ set :environment, :development
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 1.minute do
-  command "ruby ../app/models/getmetadata.rb"
+every 15.minutes do
+  runner "Tasks::GetAudioJob.perform"
 end
 
 #every :day, at: "10:35 am" do"
