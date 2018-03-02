@@ -1,5 +1,7 @@
 {
   "name": "audio_uploader_test_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "storj-lib": "^8.7.0"
+  }
 }
