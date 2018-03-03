@@ -65,7 +65,7 @@ class ShowslistsController < ApplicationController
 
   def download
     @upload_file = Showslist.find(params[:id].to_i)
-    filepath = @upload_file.filename.current_path
+    filepath = @upload_file.filename.url
     stat = File::stat(filepath)
     send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size)
   end
