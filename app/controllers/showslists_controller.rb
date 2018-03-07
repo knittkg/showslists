@@ -66,9 +66,11 @@ class ShowslistsController < ApplicationController
   def download
     @upload_file = Showslist.find(params[:id].to_i)
     filepath = @upload_file.filename.url
-    # stat = File::stat(filepath)
+    stat = File::stat(filepath)
     # send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size)
-    send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''))
+    # see https://stackoverflow.com/questions/12277971/using-send-file-to-download-a-file-from-amazon-s3
+    # send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''))
+    send_data(File.read(filepath), :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size )
   end
 
   private
