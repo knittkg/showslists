@@ -67,13 +67,15 @@ class ShowslistsController < ApplicationController
     @upload_file = Showslist.find(params[:id].to_i)
     # filepath = @upload_file.filename.url
     data =open(URI.encode( @upload_file.filename.url ))
+    dlname = "#{@upload_file.live_date}_#{@upload_file.live_pref}_#{@upload_file.live_place}.mp3"
     # stat = File::stat(filepath)
     # open( filepath ) 
     # send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size)
     # see https://stackoverflow.com/questions/12277971/using-send-file-to-download-a-file-from-amazon-s3
     # send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''))
     # send_data(File.read(filepath), :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size )
-    send_data data.read, disposition: 'attachment', filename: @upload_file.title , type: 'audio/mpeg' 
+    # send_data data.read, disposition: 'attachment', filename: @upload_file.title , type: 'audio/mpeg' 
+    send_data data.read, disposition: 'attachment', filename: dlname, type: 'audio/mpeg'
   end
 
   private
