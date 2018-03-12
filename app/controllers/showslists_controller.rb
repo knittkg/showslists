@@ -73,7 +73,7 @@ class ShowslistsController < ApplicationController
     # see https://stackoverflow.com/questions/12277971/using-send-file-to-download-a-file-from-amazon-s3
     # send_file(filepath, :filename => @upload_file.filename.url.gsub(/.*\//,''))
     # send_data(File.read(filepath), :filename => @upload_file.filename.url.gsub(/.*\//,''), :length => stat.size )
-    send_data data.read, disposition: 'attachment', filename: @upload_file.filename, type: 'audio/mpeg' 
+    send_data data.read, disposition: 'attachment', filename: @upload_file.title , type: 'audio/mpeg' 
   end
 
   private
