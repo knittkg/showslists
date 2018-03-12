@@ -44,26 +44,26 @@ class GetAudioJob < ApplicationJob
           AudioInfo.open(filename) do |info|
             # titleを読み出して演奏日、演奏した都道府県、演奏した箱に分割
             title = info.title
-            puts title
+            #puts title
             septitle = title.split(",")
-            p septitle 
+            #p septitle 
             livedate = septitle[2]
-            puts livedate
+            #puts livedate
             livepref = septitle[1]
-            puts livepref
+            #puts livepref
             liveplace_tmp1 = septitle[0]
-            puts liveplace_tmp1
+            #puts liveplace_tmp1
             liveplace_ary = liveplace_tmp1.split(" ")
-            p liveplace_ary
+            #p liveplace_ary
             liveplace_tmp2 = []
             liveplace_tmp2 << liveplace_ary[2,3]
-            puts liveplace_tmp2 
+            #puts liveplace_tmp2 
             liveplace = liveplace_tmp2.join
-            puts liveplace
+            #puts liveplace
 
             stat = File.stat(filename)
             Showslist.create( filename: fixture_file_upload(filename, 'audio/mpeg') , live_date: livedate , live_place: liveplace , live_pref: livepref , name: info.artist , title: info.title , length: stat.size , playtime: info.length)
-            puts 'recentshow.mp3 new entry created'
+            # puts 'recentshow.mp3 new entry created'
           end
         # 管理者宛に更新通知のメール送信
          #respond_to do |format|
