@@ -5,7 +5,9 @@ class ShowslistsController < ApplicationController
   # GET /showslists
   # GET /showslists.json
   def index
-    @showslists = Showslist.all
+    #@showslists = Showslist.all
+    #@showslists = Showslist.find(:all, :order => "live_date DESC")
+    @showslists = Showslist.all.order(live_date: :DESC)
   end
 
   # GET /showslists/1
