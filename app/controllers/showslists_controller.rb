@@ -7,7 +7,8 @@ class ShowslistsController < ApplicationController
   def index
     #@showslists = Showslist.all
     #@showslists = Showslist.find(:all, :order => "live_date DESC")
-    @showslists = Showslist.order(live_date: :DESC)
+    #@showslists = Showslist.order(live_date: :DESC)
+    @showslists = Showslist.search(params[:search])
   end
 
   # GET /showslists/1
