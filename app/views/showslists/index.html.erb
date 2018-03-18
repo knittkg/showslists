@@ -1,34 +1,40 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Showslists</h1>
+<h4>Showslists</h4>
 
-<table>
+<table  class="table table-hover table table-bordered">
   <thead>
     <tr>
-      <th>Live date</th>
+      <!-- <th>Live date</th> -->
       <!-- <th>Live place</th> -->
       <!-- <th>Live pref</th>  -->
-      <th>Artist</th>
-      <th>Title</th>
-      <th>Size</th>
-      <th>Time</th>
-      <th>File</th>
-      <th colspan="3"></th>
+      <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Artist</th>
+      <th><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>Title</th>
+      <th><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Size</th>
+      <th><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Time</th>
+      <th><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Listen</th>
+      <!-- <th colspan="3"></th> -->
+      <% if logged_in? %>
+      <th colspan="2"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>Maintenance</th>
+      <% else %>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @showslists.each do |showslist| %>
       <tr>
-        <td><%= showslist.live_date %></td>
+        <!-- <td><%= showslist.live_date %></td> -->
         <!-- <td><%= showslist.live_place %></td> -->
         <!-- <td><%= showslist.live_pref %></td>  -->
         <!-- <td><%= link_to showslist.filename , action: "download", id: showslist.id %></td> -->
         <td><%= showslist.name %></td>
         <td><%= showslist.title %></td>
-        <td><%= showslist.length %></td>
-        <td><%= showslist.playtime %></td>
-        <td><%= link_to "DL", :controller => "showslists", :action => "download" , id: showslist.id %></td>
+        <td><%= number_to_human_size( showslist.length ) %></td>
+        <td><%= Time.at(showslist.playtime).strftime('%X') %></td>
+        <td><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span><%= link_to "DL", :controller => "showslists", :action => "download" , id: showslist.id %></td>
+        <!-- <td><%= link_to "DL", :controller => "showslists", :action => "download" , id: showslist.id %></td> -->
         <!-- <td><%= link_to 'Show', showslist %></td> -->
         <% if logged_in? %>
         <td><%= link_to 'Edit', edit_showslist_path(showslist) %></td>
@@ -43,6 +49,8 @@
 
 <br>
 <% if logged_in? %>
-  <%= link_to 'New Showslist', new_showslist_path %>
+  <%= link_to 'Add New Showslist', new_showslist_path %>
 <% else %>
 <% end %>
+
+</div>

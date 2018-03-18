@@ -1,3 +1,7 @@
+.container {
+  margin: 70px;
+}
+
 body {
   background-color: #fff;
   color: #333;
@@ -7,12 +11,23 @@ body {
   line-height: 18px;
 }
 
-p, ol, ul, td {
+p, ol, ul {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
+thead {
+  background-color: #eee;
+}
+
+
+td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  text-align:center;
+  line-height: 18px;
+}
 pre {
   background-color: #eee;
   padding: 10px;
@@ -34,6 +49,7 @@ a {
 
 th {
   padding-bottom: 5px;
+  text-align: center;
 }
 
 td {

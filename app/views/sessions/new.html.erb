@@ -1,4 +1,5 @@
-<p>Log in</p>
+<div class="container">
+<p>管理人Log in</p>
 <%= form_with(scope: :session, url: sessions_path) do |f| %>
 
   <%= f.label :email %>
@@ -9,3 +10,5 @@
 
   <%= f.submit "Log in" %>
 <% end %>
+
+</div>
