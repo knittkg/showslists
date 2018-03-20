@@ -44,9 +44,11 @@
         <td><%= showslist.title %></td>
         <td><%= number_to_human_size( showslist.length ) %></td>
         <td><%= Time.at(showslist.playtime).strftime('%X') %></td>
-        <td><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span><%= link_to "DL", :controller => "showslists", :action => "download" , id: showslist.id %></td>
-        <!-- <td><%= link_to "DL", :controller => "showslists", :action => "download" , id: showslist.id %></td> -->
-        <!-- <td><%= link_to 'Show', showslist %></td> -->
+        <td><%= link_to download_showslists_path(id: showslist.id) do %>
+          <span class="glyphicon glyphicon-cloud-download" aria-hidden="true">DL</span>
+          <% end %>
+        </td>
+
         <% if logged_in? %>
         <td><%= link_to 'Edit', edit_showslist_path(showslist) %></td>
         <td><%= link_to 'Destroy', showslist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
